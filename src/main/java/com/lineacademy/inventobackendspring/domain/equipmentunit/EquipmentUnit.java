@@ -1,0 +1,39 @@
+package com.lineacademy.inventobackendspring.domain.equipmentunit;
+
+import com.lineacademy.inventobackendspring.domain.common.BaseTimeEntity;
+import com.lineacademy.inventobackendspring.domain.enums.EquipmentsStatus;
+import com.lineacademy.inventobackendspring.domain.equipment.Equipment;
+import jakarta.persistence.*;
+import lombok.AccessLevel;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+
+@Entity
+@Table(name = "equipment_units")
+@Getter
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
+public class EquipmentUnit extends BaseTimeEntity {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @Column(name = "asset_number", nullable = false, unique = true)
+    private String assetNumber;
+
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private EquipmentsStatus status = EquipmentsStatus.AVAILABLE;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "equipment_id", nullable = false)
+    private Equipment equipment;
+
+    // TODO : Rental 관계 작성
+
+    @Builder
+    private EquipmentUnit(String assetNumber, EquipmentsStatus status) {
+        this.assetNumber = assetNumber;
+        if (status != null) this.status = status;
+    }
+}

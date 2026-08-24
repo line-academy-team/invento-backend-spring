@@ -1,12 +1,17 @@
-package com.lineacardemy.inventobackendspring.domain.department;
+package com.lineacademy.inventobackendspring.domain.department;
 
-import com.lineacardemy.inventobackendspring.domain.common.BaseTimeEntity;
-import com.lineacardemy.inventobackendspring.domain.organization.Organization;
+import com.lineacademy.inventobackendspring.domain.common.BaseTimeEntity;
+import com.lineacademy.inventobackendspring.domain.equipment.Equipment;
+import com.lineacademy.inventobackendspring.domain.member.Member;
+import com.lineacademy.inventobackendspring.domain.organization.Organization;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "departments")
@@ -27,9 +32,11 @@ public class Department extends BaseTimeEntity {
     @JoinColumn(name = "organization_id", nullable = false)
     private Organization organization;
 
-    // TODO : Member 관계 작성
+    @OneToMany(mappedBy = "department")
+    private List<Member> users = new ArrayList<>();
 
-    // TODO : Equipment 관계 작성
+    @OneToMany(mappedBy = "department")
+    private List<Equipment> equipment = new ArrayList<>();
 
     @Builder
     public Department(String name, String description, Organization organization) {
