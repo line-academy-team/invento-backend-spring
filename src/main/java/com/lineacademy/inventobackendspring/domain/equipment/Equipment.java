@@ -107,4 +107,34 @@ public class Equipment extends BaseTimeEntity {
         this.department = department;
         this.creator = creator;
     }
+
+    public void updateName(String name) {
+        this.name = name;
+    }
+
+    public void updateType(EquipmentType type) {
+        this.type = type;
+    }
+
+    public void updateTotalQuantity(Integer totalQuantity) {
+        this.totalQuantity = totalQuantity;
+    }
+
+    public void updateCategory(String category) {
+        this.category = category;
+    }
+
+    public void updateDescription(String description) {
+        this.description = description;
+    }
+
+    public void updateImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+    }
+
+    public void updateDepartment(Department department) {
+        this.department = department;
+    }
 }
+
+
