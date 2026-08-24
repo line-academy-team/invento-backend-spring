@@ -99,7 +99,10 @@ public class Member extends BaseTimeEntity {
             LocalDateTime approvedAt,
             String rejectedReason,
             LocalDateTime joinedAt,
-            Member approver
+            Member approver,
+            User user,
+            Organization organization,
+            Department department
     ) {
         this.id = id;
         this.role = role;
@@ -108,5 +111,8 @@ public class Member extends BaseTimeEntity {
         this.rejectedReason = rejectedReason;
         this.joinedAt = joinedAt;
         this.approver = approver;
+        this.user = user;
+        this.organization = organization;
+        this.department = department;
     }
 }

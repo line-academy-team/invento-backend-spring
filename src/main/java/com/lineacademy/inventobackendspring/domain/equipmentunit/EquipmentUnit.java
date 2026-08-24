@@ -38,8 +38,13 @@ public class EquipmentUnit extends BaseTimeEntity {
     private List<Rental> rentals = new ArrayList<>();
 
     @Builder
-    private EquipmentUnit(String assetNumber, EquipmentsStatus status) {
+    private EquipmentUnit(
+            String assetNumber,
+            EquipmentsStatus status,
+            Equipment equipment
+    ) {
         this.assetNumber = assetNumber;
+        this.equipment = equipment;
         if (status != null) this.status = status;
     }
 }

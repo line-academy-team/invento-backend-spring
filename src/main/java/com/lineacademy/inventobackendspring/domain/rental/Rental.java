@@ -5,9 +5,9 @@ import com.lineacademy.inventobackendspring.domain.enums.RentalStatus;
 import com.lineacademy.inventobackendspring.domain.equipment.Equipment;
 import com.lineacademy.inventobackendspring.domain.equipmentunit.EquipmentUnit;
 import com.lineacademy.inventobackendspring.domain.member.Member;
-import com.lineacardemy.inventobackendspring.domain.common.BaseTimeEntity;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.CreatedDate;
@@ -54,6 +54,10 @@ public class Rental extends BaseTimeEntity {
     private Member approver;
 
     @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "member_id", nullable = false)
+    private Member member;
+
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "equipment_id", nullable = false)
     private Equipment equipment;
 
@@ -61,5 +65,20 @@ public class Rental extends BaseTimeEntity {
     @JoinColumn(name = "equipment_unit_id")
     private EquipmentUnit equipmentUnit;
 
-
+    @Builder
+    private Rental(
+            Equipment equipment,
+            EquipmentUnit equipmentUnit,
+            Member member,
+            Integer quantity,
+            String reason,
+            RentalStatus status
+    ) {
+        this.equipment = equipment;
+        this.equipmentUnit = equipmentUnit;
+        this.member = member;
+        this.reason = reason;
+        if (quantity != null) this.quantity = quantity;
+        if (status != null) this.status = status;
+    }
 }
