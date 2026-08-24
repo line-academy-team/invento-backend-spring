@@ -1,7 +1,11 @@
 package com.lineacademy.inventobackendspring.domain.member;
 
+import com.lineacademy.inventobackendspring.domain.common.BaseTimeEntity;
+import com.lineacademy.inventobackendspring.domain.department.Department;
 import com.lineacademy.inventobackendspring.domain.enums.MemberRole;
 import com.lineacademy.inventobackendspring.domain.enums.MemberStatus;
+import com.lineacademy.inventobackendspring.domain.organization.Organization;
+import com.lineacademy.inventobackendspring.domain.user.User;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Builder;
@@ -16,7 +20,7 @@ import java.util.List;
 @Table
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class Member {
+public class Member extends BaseTimeEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -42,11 +46,17 @@ public class Member {
     @JoinColumn(name = "user_id", nullable = false, unique = true)
     private Member approver;
 
-    // TODO : Organization 관계 작성
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "organization_id", nullable = false)
+     private Organization organization;
 
-    // TODO : User 관계 작성
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id", nullable = false, unique = true)
+    private User user;
 
-    // TODO : Department 관계 작성
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "department_id")
+    private Department department;
 
     @OneToMany(mappedBy = "approver")
     private List<Member> approvedMembers = new ArrayList<>();
