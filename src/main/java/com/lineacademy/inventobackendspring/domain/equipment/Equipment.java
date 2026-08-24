@@ -4,6 +4,7 @@ import com.lineacademy.inventobackendspring.domain.common.BaseTimeEntity;
 import com.lineacademy.inventobackendspring.domain.department.Department;
 import com.lineacademy.inventobackendspring.domain.enums.EquipmentType;
 import com.lineacademy.inventobackendspring.domain.enums.EquipmentsStatus;
+import com.lineacademy.inventobackendspring.domain.equipmentunit.EquipmentUnit;
 import com.lineacademy.inventobackendspring.domain.member.Member;
 import com.lineacademy.inventobackendspring.domain.organization.Organization;
 import jakarta.persistence.*;
@@ -11,6 +12,9 @@ import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "equipment")
@@ -58,6 +62,15 @@ public class Equipment extends BaseTimeEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "created_by", nullable = false)
     private Member creator;
+
+    @OneToMany(mappedBy = "equipment")
+    private List<EquipmentUnit> units = new ArrayList<>();
+
+    // TODO : Rental 관계 작성
+
+    // TODO : EquipmentStockRequest 관계 작성
+
+    // TODO : Report 관계 작성
 
     @Builder
     private Equipment (
