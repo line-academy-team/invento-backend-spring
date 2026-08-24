@@ -36,7 +36,7 @@ public class EquipmentStockRequest extends BaseTimeEntity {
     @Column(name = "processed_at")
     private LocalDateTime processedAt;
 
-    @Column(name = "rejected_reason", length = 255)
+    @Column(name = "rejected_reason")
     private String rejectedReason;
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -75,5 +75,13 @@ public class EquipmentStockRequest extends BaseTimeEntity {
         this.status = status;
         this.processedAt = LocalDateTime.now();
         this.rejectedReason = rejectedReason;
+    }
+
+    public void updateQuantity(Integer quantity) {
+        this.quantity = quantity;
+    }
+
+    public void updateReason(String reason) {
+        this.reason = reason;
     }
 }
