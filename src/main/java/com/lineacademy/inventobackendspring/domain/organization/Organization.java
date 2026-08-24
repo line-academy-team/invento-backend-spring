@@ -2,6 +2,8 @@ package com.lineacademy.inventobackendspring.domain.organization;
 
 import com.lineacademy.inventobackendspring.domain.common.BaseTimeEntity;
 import com.lineacademy.inventobackendspring.domain.department.Department;
+import com.lineacademy.inventobackendspring.domain.equipment.Equipment;
+import com.lineacademy.inventobackendspring.domain.member.Member;
 import com.lineacademy.inventobackendspring.domain.user.User;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
@@ -39,6 +41,13 @@ public class Organization extends BaseTimeEntity {
 
     @OneToMany(mappedBy = "organization")
     private List<Department> departments = new ArrayList<>();
+
+    @OneToMany(mappedBy = "organizatoin")
+    private List<Member> users = new ArrayList<>();
+
+    @OneToMany(mappedBy = "organization")
+    private List<Equipment> equipments = new ArrayList<>();
+
     @Builder
     public Organization(String name, String description, String logoUrl, String inviteCode, User creator) {
         this.name = name;

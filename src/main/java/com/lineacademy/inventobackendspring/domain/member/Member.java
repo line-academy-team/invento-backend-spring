@@ -4,6 +4,7 @@ import com.lineacademy.inventobackendspring.domain.common.BaseTimeEntity;
 import com.lineacademy.inventobackendspring.domain.department.Department;
 import com.lineacademy.inventobackendspring.domain.enums.MemberRole;
 import com.lineacademy.inventobackendspring.domain.enums.MemberStatus;
+import com.lineacademy.inventobackendspring.domain.equipment.Equipment;
 import com.lineacademy.inventobackendspring.domain.organization.Organization;
 import com.lineacademy.inventobackendspring.domain.user.User;
 import jakarta.persistence.*;
@@ -17,7 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table
+@Table(name = "member")
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Member extends BaseTimeEntity {
@@ -61,7 +62,8 @@ public class Member extends BaseTimeEntity {
     @OneToMany(mappedBy = "approver")
     private List<Member> approvedMembers = new ArrayList<>();
 
-    // TODO : Equipment 관계 작성
+    @OneToMany(mappedBy = "creator")
+    private List<Equipment> equipments = new ArrayList<>();
 
     // TODO : Rental 관계 작성
 
