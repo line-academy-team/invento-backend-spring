@@ -5,7 +5,10 @@ import com.lineacademy.inventobackendspring.domain.department.Department;
 import com.lineacademy.inventobackendspring.domain.enums.MemberRole;
 import com.lineacademy.inventobackendspring.domain.enums.MemberStatus;
 import com.lineacademy.inventobackendspring.domain.equipment.Equipment;
+import com.lineacademy.inventobackendspring.domain.equipmentstockrequest.EquipmentStockRequest;
 import com.lineacademy.inventobackendspring.domain.organization.Organization;
+import com.lineacademy.inventobackendspring.domain.rental.Rental;
+import com.lineacademy.inventobackendspring.domain.report.Report;
 import com.lineacademy.inventobackendspring.domain.user.User;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
@@ -66,14 +69,27 @@ public class Member extends BaseTimeEntity {
     private List<Equipment> equipments = new ArrayList<>();
 
     // TODO : Rental 관계 작성
+    @OneToMany(mappedBy = "approver")
+    private List<Rental> approvedRentals = new ArrayList<>();
+
+    @OneToMany(mappedBy = "member")
+    private List<Rental> rentals = new ArrayList<>();
 
     // TODO : EquipmentStockRequest 관계 작성
+    @OneToMany(mappedBy = "requester")
+    private List<EquipmentStockRequest> requestedStock =new ArrayList<>();
 
     // TODO : EquipmentStockResponse 관계 작성
+    @OneToMany(mappedBy = "processor")
+    private List<EquipmentStockRequest> processedStockRequests = new ArrayList<>();
 
     // TODO : Report 관계 작성
+    @OneToMany(mappedBy = "reporter")
+    private List<Report> reports = new ArrayList<>();
 
     // TODO : Report 관계 작성
+    @OneToMany(mappedBy = "processor")
+    private List<Report> processedReports = new ArrayList<>();
 
     @Builder
     public Member(

@@ -3,11 +3,15 @@ package com.lineacademy.inventobackendspring.domain.equipmentunit;
 import com.lineacademy.inventobackendspring.domain.common.BaseTimeEntity;
 import com.lineacademy.inventobackendspring.domain.enums.EquipmentsStatus;
 import com.lineacademy.inventobackendspring.domain.equipment.Equipment;
+import com.lineacademy.inventobackendspring.domain.rental.Rental;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "equipment_units")
@@ -30,6 +34,8 @@ public class EquipmentUnit extends BaseTimeEntity {
     private Equipment equipment;
 
     // TODO : Rental 관계 작성
+    @OneToMany(mappedBy = "equipmentUnit")
+    private List<Rental> rentals = new ArrayList<>();
 
     @Builder
     private EquipmentUnit(String assetNumber, EquipmentsStatus status) {

@@ -1,15 +1,16 @@
 package com.lineacademy.inventobackendspring.domain.report;
 
-import com.lineacardemy.inventobackendspring.domain.common.BaseTimeEntity;
-import com.lineacardemy.inventobackendspring.domain.enums.ReportStatus;
-import com.lineacardemy.inventobackendspring.domain.enums.ReportType;
+import com.lineacademy.inventobackendspring.domain.common.BaseTimeEntity;
+import com.lineacademy.inventobackendspring.domain.enums.ReportStatus;
+import com.lineacademy.inventobackendspring.domain.enums.ReportType;
+import com.lineacademy.inventobackendspring.domain.equipment.Equipment;
+import com.lineacademy.inventobackendspring.domain.member.Member;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import java.lang.reflect.Member;
 import java.time.LocalDateTime;
 
 @Entity
@@ -54,8 +55,8 @@ public class Report extends BaseTimeEntity {
     private Equipment equipment;
 
     @Builder
-    private Report (
-            Equipment equipment
+    private Report(
+            Equipment equipment,
             Member reporter,
             ReportType type,
             ReportStatus status,
@@ -63,11 +64,11 @@ public class Report extends BaseTimeEntity {
             String content
     ) {
         this.equipment = equipment;
-                this.reporter = reporter;
-                this.type = type;
-                if (status ! = null) this.status = status;
-                this.title = title;
-                this.content = content;
+        this.reporter = reporter;
+        this.type = type;
+        if (status != null) this.status = status;
+        this.title = title;
+        this.content = content;
     }
 
     public void processReport(
@@ -80,6 +81,4 @@ public class Report extends BaseTimeEntity {
         this.result = result;
         this.processedAt = LocalDateTime.now();
     }
-
-
 }

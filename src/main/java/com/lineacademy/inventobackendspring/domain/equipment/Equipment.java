@@ -4,9 +4,12 @@ import com.lineacademy.inventobackendspring.domain.common.BaseTimeEntity;
 import com.lineacademy.inventobackendspring.domain.department.Department;
 import com.lineacademy.inventobackendspring.domain.enums.EquipmentType;
 import com.lineacademy.inventobackendspring.domain.enums.EquipmentsStatus;
+import com.lineacademy.inventobackendspring.domain.equipmentstockrequest.EquipmentStockRequest;
 import com.lineacademy.inventobackendspring.domain.equipmentunit.EquipmentUnit;
 import com.lineacademy.inventobackendspring.domain.member.Member;
 import com.lineacademy.inventobackendspring.domain.organization.Organization;
+import com.lineacademy.inventobackendspring.domain.rental.Rental;
+import com.lineacademy.inventobackendspring.domain.report.Report;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Builder;
@@ -67,10 +70,16 @@ public class Equipment extends BaseTimeEntity {
     private List<EquipmentUnit> units = new ArrayList<>();
 
     // TODO : Rental 관계 작성
+    @OneToMany(mappedBy = "equipment")
+    private List<Rental> rentals = new ArrayList<>();
 
     // TODO : EquipmentStockRequest 관계 작성
+    @OneToMany(mappedBy = "equipment")
+    private List<EquipmentStockRequest> stockRequests = new ArrayList<>();
 
     // TODO : Report 관계 작성
+    @OneToMany(mappedBy = "equipment")
+    private List<Report> reports = new ArrayList<>();
 
     @Builder
     private Equipment (

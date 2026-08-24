@@ -1,6 +1,9 @@
 package com.lineacademy.inventobackendspring.domain.equipmentstockrequest;
 
-import com.lineacardemy.inventobackendspring.domain.enums.RequestStatus;
+import com.lineacademy.inventobackendspring.domain.common.BaseTimeEntity;
+import com.lineacademy.inventobackendspring.domain.enums.RequestStatus;
+import com.lineacademy.inventobackendspring.domain.equipment.Equipment;
+import com.lineacademy.inventobackendspring.domain.member.Member;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Builder;
@@ -8,14 +11,14 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.apache.coyote.Request;
 
-import java.lang.reflect.Member;
+
 import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "equipment_stock_requests")
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class EquipmentStockRequest {
+public class EquipmentStockRequest extends BaseTimeEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -41,7 +44,11 @@ public class EquipmentStockRequest {
     private Equipment equipment;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "processed_by");
+    @JoinColumn(name = "requester_id", nullable = false)
+    private Member requester;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "processed_by")
     private Member processor;
 
     @Builder
@@ -69,5 +76,4 @@ public class EquipmentStockRequest {
         this.processedAt = LocalDateTime.now();
         this.rejectedReason = rejectedReason;
     }
-
 }
