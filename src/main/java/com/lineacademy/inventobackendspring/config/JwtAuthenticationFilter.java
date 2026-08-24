@@ -1,7 +1,7 @@
 package com.lineacademy.inventobackendspring.config;
 
 import com.lineacademy.inventobackendspring.domain.user.User;
-import com.lineacademy.inventobackendspring.repositories.UserRepository;
+import com.lineacademy.inventobackendspring.repository.UserRepository;
 import com.lineacademy.inventobackendspring.utils.JwtUtil;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;

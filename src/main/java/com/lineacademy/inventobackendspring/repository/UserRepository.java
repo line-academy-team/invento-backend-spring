@@ -1,4 +1,4 @@
-package com.lineacademy.inventobackendspring.repositories;
+package com.lineacademy.inventobackendspring.repository;
 
 import com.lineacademy.inventobackendspring.domain.user.User;
 import org.springframework.data.jpa.repository.JpaRepository;
