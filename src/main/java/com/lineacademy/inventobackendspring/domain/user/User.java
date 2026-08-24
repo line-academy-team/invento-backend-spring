@@ -1,8 +1,8 @@
-package com.lineacardemy.inventobackendspring.domain.user;
+package com.lineacademy.inventobackendspring.domain.user;
 
-import com.lineacardemy.inventobackendspring.domain.common.BaseTimeEntity;
-import com.lineacardemy.inventobackendspring.domain.enums.UserRole;
-import com.lineacardemy.inventobackendspring.domain.organization.Organization;
+import com.lineacademy.inventobackendspring.domain.common.BaseTimeEntity;
+import com.lineacademy.inventobackendspring.domain.enums.UserRole;
+import com.lineacademy.inventobackendspring.domain.organization.Organization;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Builder;

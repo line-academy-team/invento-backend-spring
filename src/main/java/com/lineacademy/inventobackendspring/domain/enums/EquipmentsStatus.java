@@ -1,4 +1,4 @@
-package com.lineacardemy.inventobackendspring.domain.enums;
+package com.lineacademy.inventobackendspring.domain.enums;
 
 public enum EquipmentsStatus {
    AVAILABLE,

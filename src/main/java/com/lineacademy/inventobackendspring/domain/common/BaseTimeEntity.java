@@ -1,4 +1,4 @@
-package com.lineacardemy.inventobackendspring.domain.common;
+package com.lineacademy.inventobackendspring.domain.common;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.EntityListeners;

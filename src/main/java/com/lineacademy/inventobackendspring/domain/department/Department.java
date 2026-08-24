@@ -1,7 +1,7 @@
-package com.lineacardemy.inventobackendspring.domain.department;
+package com.lineacademy.inventobackendspring.domain.department;
 
-import com.lineacardemy.inventobackendspring.domain.common.BaseTimeEntity;
-import com.lineacardemy.inventobackendspring.domain.organization.Organization;
+import com.lineacademy.inventobackendspring.domain.common.BaseTimeEntity;
+import com.lineacademy.inventobackendspring.domain.organization.Organization;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Builder;
