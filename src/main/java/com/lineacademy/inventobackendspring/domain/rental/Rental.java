@@ -5,6 +5,7 @@ import com.lineacademy.inventobackendspring.domain.enums.RentalStatus;
 import com.lineacademy.inventobackendspring.domain.equipment.Equipment;
 import com.lineacademy.inventobackendspring.domain.equipmentunit.EquipmentUnit;
 import com.lineacademy.inventobackendspring.domain.member.Member;
+import com.lineacardemy.inventobackendspring.domain.common.BaseTimeEntity;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Getter;
