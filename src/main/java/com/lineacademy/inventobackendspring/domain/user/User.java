@@ -2,6 +2,7 @@ package com.lineacademy.inventobackendspring.domain.user;
 
 import com.lineacademy.inventobackendspring.domain.common.BaseTimeEntity;
 import com.lineacademy.inventobackendspring.domain.enums.UserRole;
+import com.lineacademy.inventobackendspring.domain.member.Member;
 import com.lineacademy.inventobackendspring.domain.organization.Organization;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
@@ -39,7 +40,8 @@ public class User extends BaseTimeEntity {
     @OneToMany(mappedBy = "creator", cascade = CascadeType.ALL)
     private List<Organization> organizations = new ArrayList<>();
 
-    // TODO : Member와 관계 작성
+    @OneToOne(mappedBy = "user", fetch = FetchType.LAZY)
+    private Member member;
 
     @Builder
     private User(
@@ -54,5 +56,17 @@ public class User extends BaseTimeEntity {
         this.name = name;
         this.imageUrl = imageUrl;
         if (role != null) this.role = role;
+    }
+
+    public void updateName(String name) {
+        this.name = name;
+    }
+
+    public void updateImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+    }
+
+    public void updatePasswordHash(String passwordHash) {
+        this.passwordHash = passwordHash;
     }
 }
