@@ -1,6 +1,10 @@
 package com.lineacademy.inventobackendspring.domain.rental;
 
+import com.lineacademy.inventobackendspring.domain.common.BaseTimeEntity;
 import com.lineacademy.inventobackendspring.domain.enums.RentalStatus;
+import com.lineacademy.inventobackendspring.domain.equipment.Equipment;
+import com.lineacademy.inventobackendspring.domain.equipmentunit.EquipmentUnit;
+import com.lineacademy.inventobackendspring.domain.member.Member;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -13,7 +17,7 @@ import java.time.LocalDateTime;
 @Table(name = "rentals")
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class Rental extends BaseTimeEntity{
+public class Rental extends BaseTimeEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
