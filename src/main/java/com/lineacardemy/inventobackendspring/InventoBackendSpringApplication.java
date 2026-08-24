@@ -1,4 +1,4 @@
-package com.lineacademy.inventobackendspring;
+package com.lineacardemy.inventobackendspring;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
