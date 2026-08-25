@@ -74,11 +74,25 @@ public class Report extends BaseTimeEntity {
     public void processReport(
             Member processor,
             ReportStatus status,
+            ReportType type,
             String result
     ) {
         this.processor = processor;
         this.status = status;
         this.result = result;
+        this.type = type;
         this.processedAt = LocalDateTime.now();
+    }
+
+    public void updateType(ReportType type) {
+        this.type = type;
+    }
+
+    public void updateTitle(String title) {
+        this.title = title;
+    }
+
+    public void updateContent(String content) {
+        this.content = content;
     }
 }

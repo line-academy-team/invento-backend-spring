@@ -1,5 +1,6 @@
 package com.lineacademy.inventobackendspring.repository;
 
+import com.lineacademy.inventobackendspring.domain.enums.RentalStatus;
 import com.lineacademy.inventobackendspring.domain.rental.Rental;
 import org.springframework.data.jpa.repository.JpaRepository;
 
@@ -15,4 +16,6 @@ public interface RentalRepository extends JpaRepository<Rental, Long> {
     List<Rental> findByEquipmentOrganizationIdOrderByCreatedAtDesc(Long organizationId);
 
     Optional<Rental> findByIdAndEquipmentOrganizationId(Long id, Long organizationId);
+
+    boolean existsByMemberIdAndEquipmentIdAndStatus(Long memberId, Long equipmentId, RentalStatus status);
 }

@@ -23,4 +23,5 @@ public interface MemberRepository extends JpaRepository<Member, Long> {
             MemberStatus status,
             List<MemberRole> roles
     );
+    Optional<Member> findFirstByUserIdAndStatusAndRoleIn(Long userId, MemberStatus memberStatus, List<MemberRole> list);
 }
