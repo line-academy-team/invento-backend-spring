@@ -69,7 +69,6 @@ public class Equipment extends BaseTimeEntity {
     @OneToMany(mappedBy = "equipment")
     private List<EquipmentUnit> units = new ArrayList<>();
 
-    // TODO : Rental 관계 작성
     @OneToMany(mappedBy = "equipment")
     private List<Rental> rentals = new ArrayList<>();
 
@@ -107,4 +106,63 @@ public class Equipment extends BaseTimeEntity {
         this.department = department;
         this.creator = creator;
     }
+
+    public void updateName(String name) {
+        this.name = name;
+    }
+
+    public void updateType(EquipmentType type) {
+        this.type = type;
+    }
+
+    public void updateTotalQuantity(Integer totalQuantity) {
+        this.totalQuantity = totalQuantity;
+    }
+
+    public void updateCategory(String category) {
+        this.category = category;
+    }
+
+    public void updateDescription(String description) {
+        this.description = description;
+    }
+
+    public void updateImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+    }
+
+    public void updateDepartment(Department department) {
+        this.department = department;
+    }
+
+    public void increaseAvailableQuantity(Integer quantity) {
+        if (quantity == null || quantity < 0) return;
+
+        if (this.available_quantity == null) {
+            this.available_quantity = 0;
+        }
+
+        this.available_quantity += quantity;
+
+        // 가용 수량이 전체 수량을 초과하지 않도록 보정 (선택 사항)
+        if (this.available_quantity > this.totalQuantity) {
+            this.available_quantity = this.totalQuantity;
+        }
+    }
+
+    public void decreaseAvailableQuantity(Integer quantity) {
+        if (quantity == null || quantity < 0) return;
+
+        if (this.available_quantity == null) {
+            this.available_quantity = 0;
+        }
+
+        if (this.available_quantity < quantity) {
+            throw new RuntimeException("AVAILABLE_QUANTITY_NOT_ENOUGH");
+        }
+
+        this.available_quantity -= quantity;
+    }
 }
+
+
