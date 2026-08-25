@@ -115,4 +115,25 @@ public class Member extends BaseTimeEntity {
         this.organization = organization;
         this.department = department;
     }
+
+    public void approveJoin(Member approver, Department department) {
+        this.status = MemberStatus.APPROVED;
+        this.approver = approver;
+        this.approvedAt = LocalDateTime.now();
+        this.joinedAt = LocalDateTime.now();
+        if (department != null) {
+            this.department = department;
+        }
+    }
+
+    public void rejectJoin(Member approver, String rejectedReason) {
+        this.status = MemberStatus.REJECTED;
+        this.approver = approver;
+        this.approvedAt = LocalDateTime.now();
+        this.rejectedReason = rejectedReason;
+    }
+
+    public void updateRole(MemberRole role) {
+        this.role = role;
+    }
 }
