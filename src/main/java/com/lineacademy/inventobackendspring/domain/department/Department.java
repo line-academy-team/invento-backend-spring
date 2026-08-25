@@ -44,4 +44,8 @@ public class Department extends BaseTimeEntity {
         this.description = description;
         this.organization = organization;
     }
+
+    public void updateName(String name) {
+        this.name = name;
+    }
 }

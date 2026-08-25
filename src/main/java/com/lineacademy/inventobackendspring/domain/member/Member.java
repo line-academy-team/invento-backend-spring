@@ -132,4 +132,8 @@ public class Member extends BaseTimeEntity {
         this.approvedAt = LocalDateTime.now();
         this.rejectedReason = rejectedReason;
     }
+
+    public void updateRole(MemberRole role) {
+        this.role = role;
+    }
 }

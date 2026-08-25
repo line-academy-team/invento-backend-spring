@@ -62,4 +62,11 @@ public interface MemberRepository extends JpaRepository<Member, Long> {
     List<Member> findOrgJoinRequestsWithSearch(@Param("orgId") Long orgId, @Param("search") String search);
 
     Optional<Member> findByIdAndOrganizationId(Long id, Long organizationId);
+
+    List<Member> findByDepartmentIdAndRole(Long departmentId, MemberRole role);
+
+    // 부서 삭제 전 멤버들의 소속 부서를 null로 초기화하는 벌크 연산
+    @Modifying(clearAutomatically = true)
+    @Query("UPDATE Member m SET m.department = null WHERE m.department.id = :departmentId")
+    void updateDepartmentIdToNull(@Param("departmentId") Long departmentId);
 }
