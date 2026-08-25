@@ -7,6 +7,7 @@ import com.lineacademy.inventobackendspring.domain.equipment.Equipment;
 import com.lineacademy.inventobackendspring.domain.equipmentstockrequest.EquipmentStockRequest;
 import com.lineacademy.inventobackendspring.domain.member.Member;
 import com.lineacademy.inventobackendspring.dto.stock.request.CreateStockRequest;
+import com.lineacademy.inventobackendspring.dto.stock.request.UpdateStockRequest;
 import com.lineacademy.inventobackendspring.repository.EquipmentRepository;
 import com.lineacademy.inventobackendspring.repository.EquipmentStockRequestRepository;
 import com.lineacademy.inventobackendspring.repository.MemberRepository;
@@ -65,7 +66,49 @@ public class StockService {
             return stockRepository.findAllByRequesterOrganizationIdOrderByCreatedAtDesc(ozId);
         } else {
             Member member = getMemberByUserId(userId);
-            return stockRepository.findAllByRequesterIdOrderByCreatedAtDesc(member.getId());
+            return stockRepository.findAllByRequesterOrganizationIdOrderByCreatedAtDesc(member.getId());
         }
+    }
+
+    @Transactional
+    public EquipmentStockRequest updateStockRequest(Long userId, Long stockId, @Valid UpdateStockRequest request) {
+        Member member = getMemberByUserId(userId);
+
+        EquipmentStockRequest stock = stockRepository.findByIdAndRequesterId(stockId, member.getId())
+                .orElseThrow(() -> new RuntimeException("STOCK_NOT_FOUND"));
+
+        if (stock.getStatus() != RequestStatus.PENDING) {
+            throw new RuntimeException("CANNOT_UPDATE_APPROVED_STOCK");
+        }
+
+        Equipment equipment = stock.getEquipment();
+        if (equipment.getType() != EquipmentType.CONSUMABLE &&
+                request.getQuantity() != null && request.getQuantity() != 1
+        ) {
+            throw new RuntimeException("INDIVIDUAL_EQUIPMENT_QUANTITY_MUST_BE_ONE");
+        }
+
+        if (request.getQuantity() != null) {
+            stock.updateQuantity(request.getQuantity());
+        }
+        if (request.getReason() != null) {
+            stock.updateReason(request.getReason());
+        }
+
+        return stock;
+    }
+
+    @Transactional
+    public void deleteStockRequest(Long userId, Long stockId) {
+        Member member = getMemberByUserId(userId);
+
+        EquipmentStockRequest stock = stockRepository.findByIdAndRequesterId(stockId, member.getId())
+                .orElseThrow(() -> new RuntimeException("STOCK_NOT_FOUND"));
+
+        if (stock.getStatus() != RequestStatus.PENDING) {
+            throw new RuntimeException("CANNOT_CANCEL_APPROVED_STOCK");
+        }
+
+        stockRepository.delete(stock);
     }
 }
