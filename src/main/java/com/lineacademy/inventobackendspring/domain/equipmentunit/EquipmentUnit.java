@@ -1,7 +1,7 @@
 package com.lineacademy.inventobackendspring.domain.equipmentunit;
 
 import com.lineacademy.inventobackendspring.domain.common.BaseTimeEntity;
-import com.lineacademy.inventobackendspring.domain.enums.EquipmentsStatus;
+import com.lineacademy.inventobackendspring.domain.enums.EquipmentStatus;
 import com.lineacademy.inventobackendspring.domain.equipment.Equipment;
 import com.lineacademy.inventobackendspring.domain.rental.Rental;
 import jakarta.persistence.*;
@@ -27,7 +27,7 @@ public class EquipmentUnit extends BaseTimeEntity {
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    private EquipmentsStatus status = EquipmentsStatus.AVAILABLE;
+    private EquipmentStatus status = EquipmentStatus.AVAILABLE;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "equipment_id", nullable = false)
@@ -40,7 +40,7 @@ public class EquipmentUnit extends BaseTimeEntity {
     @Builder
     private EquipmentUnit(
             String assetNumber,
-            EquipmentsStatus status,
+            EquipmentStatus status,
             Equipment equipment
     ) {
         this.assetNumber = assetNumber;
@@ -52,7 +52,7 @@ public class EquipmentUnit extends BaseTimeEntity {
         this.assetNumber = assetNumber;
     }
 
-    public void updateStatus(EquipmentsStatus status) {
+    public void updateStatus(EquipmentStatus status) {
         this.status = status;
     }
 }

@@ -1,6 +1,6 @@
 package com.lineacademy.inventobackendspring.domain.enums;
 
-public enum EquipmentsStatus {
+public enum EquipmentStatus {
    AVAILABLE,
     BORROWED,
     LOST,

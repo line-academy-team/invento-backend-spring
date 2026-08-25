@@ -3,13 +3,13 @@ package com.lineacademy.inventobackendspring.service;
 import com.lineacademy.inventobackendspring.domain.equipment.Equipment;
 import com.lineacademy.inventobackendspring.domain.equipmentunit.EquipmentUnit;
 import com.lineacademy.inventobackendspring.domain.member.Member;
-import com.lineacademy.inventobackendspring.domain.enums.EquipmentsStatus;
+import com.lineacademy.inventobackendspring.domain.enums.EquipmentStatus;
 import com.lineacademy.inventobackendspring.domain.enums.MemberRole;
 import com.lineacademy.inventobackendspring.dto.equipmentunit.request.CreateEquipmentUnitRequest;
 import com.lineacademy.inventobackendspring.dto.equipmentunit.request.UpdateEquipmentUnitRequest;
 import com.lineacademy.inventobackendspring.repository.EquipmentRepository;
 import com.lineacademy.inventobackendspring.repository.EquipmentUnitRepository;
-import com.lineacardemy.inventobackendspring.reposityory.MemberRepository;
+import com.lineacademy.inventobackendspring.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -63,7 +63,7 @@ public class EquipmentUnitService {
         EquipmentUnit unit = EquipmentUnit.builder()
                 .equipment(equipment)
                 .assetNumber(request.getAssetNumber())
-                .status(request.getStatus() != null ? request.getStatus() : EquipmentsStatus.AVAILABLE)
+                .status(request.getStatus() != null ? request.getStatus() : EquipmentStatus.AVAILABLE)
                 .build();
 
         return equipmentUnitRepository.save(unit);

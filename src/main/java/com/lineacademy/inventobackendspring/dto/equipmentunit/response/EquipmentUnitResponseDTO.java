@@ -1,7 +1,7 @@
 package com.lineacademy.inventobackendspring.dto.equipmentunit.response;
 
 import com.lineacademy.inventobackendspring.domain.equipmentunit.EquipmentUnit;
-import com.lineacademy.inventobackendspring.domain.enums.EquipmentsStatus;
+import com.lineacademy.inventobackendspring.domain.enums.EquipmentStatus;
 import lombok.Builder;
 import lombok.Getter;
 
@@ -15,7 +15,7 @@ public class EquipmentUnitResponseDTO {
         private Long id;
         private Long equipmentId;
         private String assetNumber;
-        private EquipmentsStatus status;
+        private EquipmentStatus status;
         private LocalDateTime createdAt;
         private LocalDateTime updatedAt;
 

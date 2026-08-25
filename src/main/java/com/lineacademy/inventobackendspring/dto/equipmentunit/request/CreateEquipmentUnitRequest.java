@@ -1,6 +1,6 @@
 package com.lineacademy.inventobackendspring.dto.equipmentunit.request;
 
-import com.lineacademy.inventobackendspring.domain.enums.EquipmentsStatus;
+import com.lineacademy.inventobackendspring.domain.enums.EquipmentStatus;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
@@ -17,5 +17,5 @@ public class CreateEquipmentUnitRequest {
     @Size(max = 50)
     private String assetNumber;
 
-    private EquipmentsStatus status;
+    private EquipmentStatus status;
 }
