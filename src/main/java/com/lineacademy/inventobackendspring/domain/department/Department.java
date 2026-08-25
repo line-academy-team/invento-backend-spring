@@ -33,7 +33,7 @@ public class Department extends BaseTimeEntity {
     private Organization organization;
 
     @OneToMany(mappedBy = "department")
-    private List<Member> users = new ArrayList<>();
+    private List<Member> members = new ArrayList<>();
 
     @OneToMany(mappedBy = "department")
     private List<Equipment> equipment = new ArrayList<>();
