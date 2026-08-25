@@ -1,10 +1,10 @@
 package com.lineacademy.inventobackendspring.controller;
 
 import com.lineacademy.inventobackendspring.domain.equipmentunit.EquipmentUnit;
-import com.lineacademy.inventobackendspring.dto.equipment.request.CreateEquipmentUnitRequest;
-import com.lineacademy.inventobackendspring.dto.equipment.request.UpdateEquipmentUnitRequest;
-import com.lineacademy.inventobackendspring.dto.equipment.response.EquipmentUnitResponseDTO;
-import com.lineacardemy.inventobackendspring.service.EquipmentUnitService;
+import com.lineacademy.inventobackendspring.dto.equipmentunit.request.UpdateEquipmentUnitRequest;
+import com.lineacademy.inventobackendspring.dto.equipmentunit.request.CreateEquipmentUnitRequest;
+import com.lineacademy.inventobackendspring.dto.equipmentunit.response.EquipmentUnitResponseDTO;
+import com.lineacademy.inventobackendspring.service.EquipmentUnitService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/equipment-unit")

@@ -138,30 +138,30 @@ public class Equipment extends BaseTimeEntity {
     public void increaseAvailableQuantity(Integer quantity) {
         if (quantity == null || quantity < 0) return;
 
-        if (this.availableQuantity == null) {
-            this.availableQuantity = 0;
+        if (this.available_quantity == null) {
+            this.available_quantity = 0;
         }
 
-        this.availableQuantity += quantity;
+        this.available_quantity += quantity;
 
         // 가용 수량이 전체 수량을 초과하지 않도록 보정 (선택 사항)
-        if (this.availableQuantity > this.totalQuantity) {
-            this.availableQuantity = this.totalQuantity;
+        if (this.available_quantity > this.totalQuantity) {
+            this.available_quantity = this.totalQuantity;
         }
     }
 
     public void decreaseAvailableQuantity(Integer quantity) {
         if (quantity == null || quantity < 0) return;
 
-        if (this.availableQuantity == null) {
-            this.availableQuantity = 0;
+        if (this.available_quantity == null) {
+            this.available_quantity = 0;
         }
 
-        if (this.availableQuantity < quantity) {
+        if (this.available_quantity < quantity) {
             throw new RuntimeException("AVAILABLE_QUANTITY_NOT_ENOUGH");
         }
 
-        this.availableQuantity -= quantity;
+        this.available_quantity -= quantity;
     }
 }
 

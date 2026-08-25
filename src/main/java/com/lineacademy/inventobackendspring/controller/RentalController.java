@@ -1,12 +1,12 @@
 package com.lineacademy.inventobackendspring.controller;
 
-import com.lineacardemy.inventospringprev.domain.rental.Rental;
-import com.lineacardemy.inventospringprev.domain.enums.RentalStatus;
-import com.lineacardemy.inventospringprev.dto.rental.request.CreateRentalRequest;
-import com.lineacardemy.inventospringprev.dto.rental.request.ProcessRentalRequest;
-import com.lineacardemy.inventospringprev.dto.rental.request.UpdateRentalRequest;
-import com.lineacardemy.inventospringprev.dto.rental.response.RentalResponseDTO;
-import com.lineacardemy.inventospringprev.service.RentalService;
+import com.lineacademy.inventobackendspring.domain.rental.Rental;
+import com.lineacademy.inventobackendspring.domain.enums.RentalStatus;
+import com.lineacademy.inventobackendspring.dto.rental.request.UpdateRentalRequest;
+import com.lineacademy.inventobackendspring.dto.rental.request.ProcessRentalRequest;
+import com.lineacademy.inventobackendspring.dto.rental.request.CreateRentalRequest;
+import com.lineacademy.inventobackendspring.dto.rental.response.RentalResponseDTO;
+import com.lineacademy.inventobackendspring.service.RentalService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;

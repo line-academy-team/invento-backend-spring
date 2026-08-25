@@ -68,7 +68,7 @@ public class EquipmentResponseDTO {
                     .imageUrl(equipment.getImageUrl())
                     .type(equipment.getType())
                     .totalQuantity(equipment.getTotalQuantity())
-                    .availableQuantity(equipment.getAvailableQuantity())
+                    .availableQuantity(equipment.getAvailable_quantity())
                     .status(equipment.getStatus())
                     .department(DepartmentSummary.from(equipment.getDepartment()))
                     .units(equipment.getUnits().stream()
@@ -86,7 +86,7 @@ public class EquipmentResponseDTO {
         private Long id;
         private String name;
 
-        public static DepartmentSummary from(com.lineacardemy.inventospringprev.domain.department.Department dept) {
+        public static DepartmentSummary from(com.lineacademy.inventobackendspring.domain.department.Department dept) {
             if (dept == null) return null;
             return DepartmentSummary.builder()
                     .id(dept.getId())
@@ -100,7 +100,7 @@ public class EquipmentResponseDTO {
     public static class EquipmentUnitDto {
         private Long id;
         private String assetNumber;
-        private EquipmentStatus status;
+        private EquipmentsStatus status;
 
         public static EquipmentUnitDto from(EquipmentUnit unit) {
             return EquipmentUnitDto.builder()
