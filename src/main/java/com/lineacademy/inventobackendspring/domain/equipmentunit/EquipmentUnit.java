@@ -47,4 +47,12 @@ public class EquipmentUnit extends BaseTimeEntity {
         this.equipment = equipment;
         if (status != null) this.status = status;
     }
+
+    public void updateAssetNumber(String assetNumber) {
+        this.assetNumber = assetNumber;
+    }
+
+    public void updateStatus(EquipmentsStatus status) {
+        this.status = status;
+    }
 }

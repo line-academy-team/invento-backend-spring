@@ -6,6 +6,9 @@ import com.lineacademy.inventobackendspring.domain.equipment.Equipment;
 import com.lineacademy.inventobackendspring.domain.equipmentunit.EquipmentUnit;
 import com.lineacademy.inventobackendspring.domain.member.Member;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
@@ -72,13 +75,39 @@ public class Rental extends BaseTimeEntity {
             Member member,
             Integer quantity,
             String reason,
+            LocalDateTime dueAt,
             RentalStatus status
     ) {
         this.equipment = equipment;
         this.equipmentUnit = equipmentUnit;
         this.member = member;
         this.reason = reason;
+        this.dueAt = dueAt;
         if (quantity != null) this.quantity = quantity;
         if (status != null) this.status = status;
+    }
+
+    public void processRequest(RentalStatus status, Member approver, LocalDateTime approvedAt, String rejectedReason) {
+        this.status = status;
+        this.approver = approver;
+        this.approvedAt = approvedAt;
+        this.rejectedReason = rejectedReason;
+    }
+
+    public void markAsReturned() {
+        this.status = RentalStatus.RETURNED;
+        this.returnedAt = LocalDateTime.now();
+    }
+
+    public void updateQuantity(Integer quantity) {
+        this.quantity = quantity;
+    }
+
+    public void updateReason(String reason) {
+        this.reason = reason;
+    }
+
+    public void updateDueAt(LocalDateTime dueAt) {
+        this.dueAt = dueAt;
     }
 }

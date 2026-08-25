@@ -69,7 +69,6 @@ public class Equipment extends BaseTimeEntity {
     @OneToMany(mappedBy = "equipment")
     private List<EquipmentUnit> units = new ArrayList<>();
 
-    // TODO : Rental 관계 작성
     @OneToMany(mappedBy = "equipment")
     private List<Rental> rentals = new ArrayList<>();
 
@@ -134,6 +133,35 @@ public class Equipment extends BaseTimeEntity {
 
     public void updateDepartment(Department department) {
         this.department = department;
+    }
+
+    public void increaseAvailableQuantity(Integer quantity) {
+        if (quantity == null || quantity < 0) return;
+
+        if (this.availableQuantity == null) {
+            this.availableQuantity = 0;
+        }
+
+        this.availableQuantity += quantity;
+
+        // 가용 수량이 전체 수량을 초과하지 않도록 보정 (선택 사항)
+        if (this.availableQuantity > this.totalQuantity) {
+            this.availableQuantity = this.totalQuantity;
+        }
+    }
+
+    public void decreaseAvailableQuantity(Integer quantity) {
+        if (quantity == null || quantity < 0) return;
+
+        if (this.availableQuantity == null) {
+            this.availableQuantity = 0;
+        }
+
+        if (this.availableQuantity < quantity) {
+            throw new RuntimeException("AVAILABLE_QUANTITY_NOT_ENOUGH");
+        }
+
+        this.availableQuantity -= quantity;
     }
 }
 

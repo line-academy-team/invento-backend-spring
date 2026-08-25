@@ -53,7 +53,7 @@ public class EquipmentResponseDTO {
         private EquipmentType type;
         private Integer totalQuantity;
         private Integer availableQuantity;
-        private EquipmentStatus status;
+        private EquipmentsStatus status;
         private DepartmentSummary department;
         private List<EquipmentUnitDto> units;
         private LocalDateTime createdAt;
