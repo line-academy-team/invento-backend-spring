@@ -75,6 +75,8 @@ public class StockController {
         }
     }
 
+    @PreAuthorize("isAuthenticated()")
+    @PatchMapping("/{stockId}")
     public ResponseEntity<Map<String, Object>> updateStockRequest(
             @AuthenticationPrincipal Long currentUserId,
             @PathVariable Long stockId,
