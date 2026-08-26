@@ -1,4 +1,4 @@
-package com.lineacademy.inventobackendspring.dto.member.response;
+package com.lineacademy.inventobackendspring.dto.user.response;
 
 import com.lineacademy.inventobackendspring.domain.enums.MemberRole;
 import com.lineacademy.inventobackendspring.domain.enums.MemberStatus;
@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
 
 @Getter
 @Builder
-public class MemberInfoResponse {
+public class MemberInfoDTO {
     private Long id;
     private Long organizationId;
     private String organizationName;
@@ -20,10 +20,10 @@ public class MemberInfoResponse {
     private MemberStatus status;
     private LocalDateTime joinedAt;
 
-    public static MemberInfoResponse from(Member member) {
+    public static MemberInfoDTO from(Member member) {
         if (member == null) return null;
 
-        return MemberInfoResponse.builder()
+        return MemberInfoDTO.builder()
                 .id(member.getId())
                 .organizationId(member.getOrganization().getId())
                 .organizationName(member.getOrganization().getName())
