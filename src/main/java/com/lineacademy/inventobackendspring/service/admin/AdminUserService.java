@@ -64,9 +64,6 @@ public class AdminUserService {
         User user = userRepository.findById(userId)
                 .orElseThrow(() -> new RuntimeException("NOT_FOUND_USER"));
 
-        if (request.getName() != null) {
-            user.updateName(request.getName());
-        }
         if (request.getRole() != null) {
             user.updateRole(request.getRole());
         }
