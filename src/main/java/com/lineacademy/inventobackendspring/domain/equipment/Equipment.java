@@ -48,7 +48,7 @@ public class Equipment extends BaseTimeEntity {
     private Integer totalQuantity = 0;
 
     @Column(name = "available_quantity", nullable = false)
-    private Integer available_quantity = 0;
+    private Integer availableQuantity = 0;
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
@@ -71,12 +71,10 @@ public class Equipment extends BaseTimeEntity {
 
     @OneToMany(mappedBy = "equipment")
     private List<Rental> rentals = new ArrayList<>();
-
     // TODO : EquipmentStockRequest 관계 작성
     @OneToMany(mappedBy = "equipment")
     private List<EquipmentStockRequest> stockRequests = new ArrayList<>();
 
-    // TODO : Report 관계 작성
     @OneToMany(mappedBy = "equipment")
     private List<Report> reports = new ArrayList<>();
 
@@ -88,7 +86,7 @@ public class Equipment extends BaseTimeEntity {
             String imageUrl,
             EquipmentType type,
             Integer totalQuantity,
-            Integer available_quantity,
+            Integer availableQuantity,
             EquipmentsStatus status,
             Organization organization,
             Department department,
@@ -100,7 +98,7 @@ public class Equipment extends BaseTimeEntity {
         this.imageUrl = imageUrl;
         this.type = type;
         this.totalQuantity = totalQuantity;
-        this.available_quantity = available_quantity;
+        this.availableQuantity = availableQuantity;
         this.status = status;
         this.organization = organization;
         this.department = department;
@@ -138,30 +136,30 @@ public class Equipment extends BaseTimeEntity {
     public void increaseAvailableQuantity(Integer quantity) {
         if (quantity == null || quantity < 0) return;
 
-        if (this.available_quantity == null) {
-            this.available_quantity = 0;
+        if (this.availableQuantity == null) {
+            this.availableQuantity = 0;
         }
 
-        this.available_quantity += quantity;
+        this.availableQuantity += quantity;
 
         // 가용 수량이 전체 수량을 초과하지 않도록 보정 (선택 사항)
-        if (this.available_quantity > this.totalQuantity) {
-            this.available_quantity = this.totalQuantity;
+        if (this.availableQuantity > this.totalQuantity) {
+            this.availableQuantity = this.totalQuantity;
         }
     }
 
     public void decreaseAvailableQuantity(Integer quantity) {
         if (quantity == null || quantity < 0) return;
 
-        if (this.available_quantity == null) {
-            this.available_quantity = 0;
+        if (this.availableQuantity == null) {
+            this.availableQuantity = 0;
         }
 
-        if (this.available_quantity < quantity) {
+        if (this.availableQuantity < quantity) {
             throw new RuntimeException("AVAILABLE_QUANTITY_NOT_ENOUGH");
         }
 
-        this.available_quantity -= quantity;
+        this.availableQuantity -= quantity;
     }
 }
 

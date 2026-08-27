@@ -9,7 +9,7 @@ import com.lineacademy.inventobackendspring.dto.equipmentunit.request.CreateEqui
 import com.lineacademy.inventobackendspring.dto.equipmentunit.request.UpdateEquipmentUnitRequest;
 import com.lineacademy.inventobackendspring.repository.EquipmentRepository;
 import com.lineacademy.inventobackendspring.repository.EquipmentUnitRepository;
-import com.lineacardemy.inventobackendspring.reposityory.MemberRepository;
+import com.lineacademy.inventobackendspring.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

@@ -68,7 +68,6 @@ public class EquipmentResponseDTO {
                     .imageUrl(equipment.getImageUrl())
                     .type(equipment.getType())
                     .totalQuantity(equipment.getTotalQuantity())
-                    .availableQuantity(equipment.getAvailable_quantity())
                     .status(equipment.getStatus())
                     .department(DepartmentSummary.from(equipment.getDepartment()))
                     .units(equipment.getUnits().stream()
