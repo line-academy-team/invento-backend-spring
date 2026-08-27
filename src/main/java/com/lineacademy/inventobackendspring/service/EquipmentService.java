@@ -86,7 +86,6 @@ public class EquipmentService {
                 .name(request.getName())
                 .type(request.getType())
                 .totalQuantity(request.getTotalQuantity())
-                .availableQuantity(request.getTotalQuantity())
                 .organization(member.getOrganization())
                 .creator(member)
                 .department(targetDepartment)

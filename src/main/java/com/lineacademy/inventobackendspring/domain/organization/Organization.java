@@ -43,7 +43,7 @@ public class Organization extends BaseTimeEntity {
     private List<Department> departments = new ArrayList<>();
 
     @OneToMany(mappedBy = "organization")
-    private List<Member> users = new ArrayList<>();
+    private List<Member> members = new ArrayList<>();
 
     @OneToMany(mappedBy = "organization")
     private List<Equipment> equipments = new ArrayList<>();
@@ -55,5 +55,17 @@ public class Organization extends BaseTimeEntity {
         this.logoUrl = logoUrl;
         this.inviteCode = inviteCode;
         this.creator = creator;
+    }
+
+    public void updateName(String name) {
+        this.name = name;
+    }
+
+    public void updateDescription(String description) {
+        this.description = description;
+    }
+
+    public void updateLogoUrl(String logoUrl) {
+        this.logoUrl = logoUrl;
     }
 }

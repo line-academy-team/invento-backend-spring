@@ -1,7 +1,7 @@
 package com.lineacademy.inventobackendspring.controller;
 
 import com.lineacademy.inventobackendspring.domain.user.User;
-import com.lineacademy.inventobackendspring.dto.member.response.MemberInfoResponse;
+import com.lineacademy.inventobackendspring.dto.user.response.MemberInfoDTO;
 import com.lineacademy.inventobackendspring.dto.user.request.*;
 import com.lineacademy.inventobackendspring.dto.user.response.UserResponse;
 import com.lineacademy.inventobackendspring.service.UserService;
@@ -34,7 +34,7 @@ public class UserController {
 
             Map<String, Object> authData = new HashMap<>();
             authData.put("user", UserResponse.from(user));
-            authData.put("memberInfo", MemberInfoResponse.from(user.getMember()));
+            authData.put("memberInfo", MemberInfoDTO.from(user.getMember()));
 
             return ResponseEntity.ok(Map.of(
                     "message", "사용자 정보 확인이 완료되었습니다.",
@@ -76,7 +76,7 @@ public class UserController {
 
             Map<String, Object> responseData = new HashMap<>();
             responseData.put("user", UserResponse.from(user));
-            responseData.put("memberInfo", MemberInfoResponse.from(user.getMember()));
+            responseData.put("memberInfo", MemberInfoDTO.from(user.getMember()));
             responseData.put("token", token);
 
             return ResponseEntity.ok(Map.of(

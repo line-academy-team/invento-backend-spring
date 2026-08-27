@@ -2,7 +2,7 @@ package com.lineacademy.inventobackendspring.dto.equipment.response;
 
 import com.lineacademy.inventobackendspring.domain.equipment.Equipment;
 import com.lineacademy.inventobackendspring.domain.equipmentunit.EquipmentUnit;
-import com.lineacademy.inventobackendspring.domain.enums.EquipmentStatus;
+import com.lineacademy.inventobackendspring.domain.enums.EquipmentsStatus;
 import com.lineacademy.inventobackendspring.domain.enums.EquipmentType;
 import lombok.Builder;
 import lombok.Getter;
@@ -22,7 +22,7 @@ public class EquipmentResponseDTO {
         private EquipmentType type;
         private Integer totalQuantity;
         private Integer availableQuantity;
-        private EquipmentStatus status;
+        private EquipmentsStatus status;
         private DepartmentSummary department;
         private LocalDateTime createdAt;
 
@@ -53,7 +53,7 @@ public class EquipmentResponseDTO {
         private EquipmentType type;
         private Integer totalQuantity;
         private Integer availableQuantity;
-        private EquipmentStatus status;
+        private EquipmentsStatus status;
         private DepartmentSummary department;
         private List<EquipmentUnitDto> units;
         private LocalDateTime createdAt;
@@ -68,7 +68,6 @@ public class EquipmentResponseDTO {
                     .imageUrl(equipment.getImageUrl())
                     .type(equipment.getType())
                     .totalQuantity(equipment.getTotalQuantity())
-                    .availableQuantity(equipment.getAvailableQuantity())
                     .status(equipment.getStatus())
                     .department(DepartmentSummary.from(equipment.getDepartment()))
                     .units(equipment.getUnits().stream()
@@ -100,7 +99,7 @@ public class EquipmentResponseDTO {
     public static class EquipmentUnitDto {
         private Long id;
         private String assetNumber;
-        private EquipmentStatus status;
+        private EquipmentsStatus status;
 
         public static EquipmentUnitDto from(EquipmentUnit unit) {
             return EquipmentUnitDto.builder()

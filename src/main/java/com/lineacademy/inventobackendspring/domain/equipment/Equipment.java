@@ -3,7 +3,7 @@ package com.lineacademy.inventobackendspring.domain.equipment;
 import com.lineacademy.inventobackendspring.domain.common.BaseTimeEntity;
 import com.lineacademy.inventobackendspring.domain.department.Department;
 import com.lineacademy.inventobackendspring.domain.enums.EquipmentType;
-import com.lineacademy.inventobackendspring.domain.enums.EquipmentStatus;
+import com.lineacademy.inventobackendspring.domain.enums.EquipmentsStatus;
 import com.lineacademy.inventobackendspring.domain.equipmentstockrequest.EquipmentStockRequest;
 import com.lineacademy.inventobackendspring.domain.equipmentunit.EquipmentUnit;
 import com.lineacademy.inventobackendspring.domain.member.Member;
@@ -20,7 +20,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "equipments")
+@Table(name = "equipment")
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Equipment extends BaseTimeEntity {
@@ -52,7 +52,7 @@ public class Equipment extends BaseTimeEntity {
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    private EquipmentStatus status = EquipmentStatus.AVAILABLE;
+    private EquipmentsStatus status = EquipmentsStatus.AVAILABLE;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "organization_id", nullable = false)
@@ -71,7 +71,7 @@ public class Equipment extends BaseTimeEntity {
 
     @OneToMany(mappedBy = "equipment")
     private List<Rental> rentals = new ArrayList<>();
-
+    // TODO : EquipmentStockRequest 관계 작성
     @OneToMany(mappedBy = "equipment")
     private List<EquipmentStockRequest> stockRequests = new ArrayList<>();
 
@@ -79,7 +79,7 @@ public class Equipment extends BaseTimeEntity {
     private List<Report> reports = new ArrayList<>();
 
     @Builder
-    private Equipment(
+    private Equipment (
             String name,
             String category,
             String description,
@@ -87,7 +87,7 @@ public class Equipment extends BaseTimeEntity {
             EquipmentType type,
             Integer totalQuantity,
             Integer availableQuantity,
-            EquipmentStatus status,
+            EquipmentsStatus status,
             Organization organization,
             Department department,
             Member creator
@@ -162,3 +162,5 @@ public class Equipment extends BaseTimeEntity {
         this.availableQuantity -= quantity;
     }
 }
+
+
