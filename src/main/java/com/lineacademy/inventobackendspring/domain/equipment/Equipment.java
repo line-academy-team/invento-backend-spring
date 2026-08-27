@@ -3,7 +3,7 @@ package com.lineacademy.inventobackendspring.domain.equipment;
 import com.lineacademy.inventobackendspring.domain.common.BaseTimeEntity;
 import com.lineacademy.inventobackendspring.domain.department.Department;
 import com.lineacademy.inventobackendspring.domain.enums.EquipmentType;
-import com.lineacademy.inventobackendspring.domain.enums.EquipmentsStatus;
+import com.lineacademy.inventobackendspring.domain.enums.EquipmentStatus;
 import com.lineacademy.inventobackendspring.domain.equipmentstockrequest.EquipmentStockRequest;
 import com.lineacademy.inventobackendspring.domain.equipmentunit.EquipmentUnit;
 import com.lineacademy.inventobackendspring.domain.member.Member;
@@ -20,7 +20,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "equipment")
+@Table(name = "equipments")
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Equipment extends BaseTimeEntity {
@@ -52,7 +52,7 @@ public class Equipment extends BaseTimeEntity {
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    private EquipmentsStatus status = EquipmentsStatus.AVAILABLE;
+    private EquipmentStatus status = EquipmentStatus.AVAILABLE;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "organization_id", nullable = false)
@@ -87,7 +87,7 @@ public class Equipment extends BaseTimeEntity {
             EquipmentType type,
             Integer totalQuantity,
             Integer availableQuantity,
-            EquipmentsStatus status,
+            EquipmentStatus status,
             Organization organization,
             Department department,
             Member creator

@@ -163,4 +163,4 @@ public class ReportController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(Map.of("message", "보고 취소 중 서버 에러가 발생했습니다."));
         }
     }
-}}}
+}
