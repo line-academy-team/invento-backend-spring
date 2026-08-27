@@ -69,4 +69,8 @@ public class User extends BaseTimeEntity {
     public void updatePasswordHash(String passwordHash) {
         this.passwordHash = passwordHash;
     }
+
+    public void updateRole(UserRole role) {
+        this.role = role;
+    }
 }
