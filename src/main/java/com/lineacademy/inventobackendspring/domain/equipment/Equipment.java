@@ -79,7 +79,7 @@ public class Equipment extends BaseTimeEntity {
     private List<Report> reports = new ArrayList<>();
 
     @Builder
-    private Equipment (
+    private Equipment(
             String name,
             String category,
             String description,
@@ -99,7 +99,9 @@ public class Equipment extends BaseTimeEntity {
         this.type = type;
         this.totalQuantity = totalQuantity;
         this.availableQuantity = availableQuantity;
-        this.status = status;
+        if (status != null) {
+            this.status = status;
+        }
         this.organization = organization;
         this.department = department;
         this.creator = creator;

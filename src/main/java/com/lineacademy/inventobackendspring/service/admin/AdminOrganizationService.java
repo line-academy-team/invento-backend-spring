@@ -2,6 +2,7 @@ package com.lineacademy.inventobackendspring.service.admin;
 
 import com.lineacademy.inventobackendspring.domain.organization.Organization;
 import com.lineacademy.inventobackendspring.dto.admin.organization.request.AdminUpdateOrganizationRequest;
+import com.lineacademy.inventobackendspring.dto.admin.organization.response.AdminOrganizationResponseDTO.OrganizationDetail;
 import com.lineacademy.inventobackendspring.repository.OrganizationRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -16,20 +17,23 @@ public class AdminOrganizationService {
     private final OrganizationRepository organizationRepository;
 
     @Transactional(readOnly = true)
-    public List<Organization> getOrganizationList() {
-        return organizationRepository.findAll();
+    public List<OrganizationDetail> getOrganizationList() {
+        return organizationRepository.findAll().stream()
+                .map(OrganizationDetail::from)
+                .toList();
     }
 
     @Transactional(readOnly = true)
-    public Organization getOrganizationById(Long orgId) {
-        return organizationRepository.findById(orgId)
+    public OrganizationDetail getOrganizationById(Long orgId) {
+        Organization org = organizationRepository.findById(orgId)
                 .orElseThrow(() -> new RuntimeException("ORGANIZATION_NOT_FOUND"));
+        return OrganizationDetail.from(org);
     }
 
     @Transactional
-    public Organization updateOrganization(Long orgId, AdminUpdateOrganizationRequest request) {
+    public OrganizationDetail updateOrganization(Long orgId, AdminUpdateOrganizationRequest request) {
         Organization org = organizationRepository.findById(orgId)
-                .orElseThrow(() -> new RuntimeException("NOT_FOUND_ORGANIZATION"));
+                .orElseThrow(() -> new RuntimeException("ORGANIZATION_NOT_FOUND"));
 
         if (request.getName() != null) {
             org.updateName(request.getName());
@@ -43,6 +47,6 @@ public class AdminOrganizationService {
             org.restore();
         }
 
-        return org;
+        return OrganizationDetail.from(org);
     }
 }

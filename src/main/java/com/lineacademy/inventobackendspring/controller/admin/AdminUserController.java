@@ -1,8 +1,9 @@
 package com.lineacademy.inventobackendspring.controller.admin;
 
-import com.lineacademy.inventobackendspring.domain.user.User;
 import com.lineacademy.inventobackendspring.dto.admin.user.request.AdminLoginRequest;
 import com.lineacademy.inventobackendspring.dto.admin.user.request.AdminUpdateUserRequest;
+import com.lineacademy.inventobackendspring.dto.admin.user.response.AdminUserResponseDTO.AdminUserDetailResponse;
+import com.lineacademy.inventobackendspring.dto.admin.user.response.AdminUserResponseDTO.AdminUserResponse;
 import com.lineacademy.inventobackendspring.service.admin.AdminUserService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -50,7 +51,7 @@ public class AdminUserController {
     @GetMapping
     public ResponseEntity<Map<String, Object>> getUsers() {
         try {
-            List<User> users = adminUserService.getUsers();
+            List<AdminUserResponse> users = adminUserService.getUsers();
             return ResponseEntity.ok(Map.of(
                     "message", "사용자 목록을 성공적으로 조회했습니다.",
                     "data", users
@@ -66,7 +67,7 @@ public class AdminUserController {
     @GetMapping("/{id}")
     public ResponseEntity<Map<String, Object>> getUserById(@PathVariable Long id) {
         try {
-            User user = adminUserService.getUserById(id);
+            AdminUserDetailResponse user = adminUserService.getUserById(id);
             return ResponseEntity.ok(Map.of(
                     "message", "사용자 상세 정보를 성공적으로 조회했습니다.",
                     "data", user
@@ -90,7 +91,7 @@ public class AdminUserController {
             @Valid @RequestBody AdminUpdateUserRequest request
     ) {
         try {
-            User updatedUser = adminUserService.updateUser(id, request);
+            AdminUserDetailResponse updatedUser = adminUserService.updateUser(id, request);
             return ResponseEntity.ok(Map.of(
                     "message", "사용자 정보가 성공적으로 수정되었습니다",
                     "data", updatedUser

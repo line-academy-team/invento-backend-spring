@@ -30,8 +30,8 @@ public class ManagerDashboardService {
 
     @Transactional(readOnly = true)
     public DashboardResponse getDashboardData(Long userId) {
-        Member manager = memberRepository.findFirstByUserIdAndOrganizationIdAndStatusAndRoleIn(
-                userId, null, MemberStatus.APPROVED, Arrays.asList(MemberRole.OWNER, MemberRole.MANAGER)
+        Member manager = memberRepository.findFirstByUserIdAndStatusAndRoleIn(
+                userId, MemberStatus.APPROVED, Arrays.asList(MemberRole.OWNER, MemberRole.MANAGER)
         ).orElseThrow(() -> new RuntimeException("MANAGER_PERMISSION_REQUIRED"));
 
         Long orgId = manager.getOrganization().getId();

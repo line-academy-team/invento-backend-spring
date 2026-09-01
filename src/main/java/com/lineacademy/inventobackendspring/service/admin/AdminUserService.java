@@ -4,6 +4,7 @@ import com.lineacademy.inventobackendspring.domain.enums.UserRole;
 import com.lineacademy.inventobackendspring.domain.user.User;
 import com.lineacademy.inventobackendspring.dto.admin.user.request.AdminLoginRequest;
 import com.lineacademy.inventobackendspring.dto.admin.user.request.AdminUpdateUserRequest;
+import com.lineacademy.inventobackendspring.dto.admin.user.response.AdminUserResponseDTO;
 import com.lineacademy.inventobackendspring.repository.UserRepository;
 import com.lineacademy.inventobackendspring.utils.JwtUtil;
 import lombok.RequiredArgsConstructor;
@@ -49,18 +50,21 @@ public class AdminUserService {
     }
 
     @Transactional(readOnly = true)
-    public List<User> getUsers() {
-        return userRepository.findAllByOrderByCreatedAtDesc();
+    public List<AdminUserResponseDTO.AdminUserResponse> getUsers() {
+        return userRepository.findAllByOrderByCreatedAtDesc().stream()
+                .map(AdminUserResponseDTO.AdminUserResponse::from)
+                .toList();
     }
 
     @Transactional(readOnly = true)
-    public User getUserById(Long userId) {
-        return userRepository.findById(userId)
+    public AdminUserResponseDTO.AdminUserDetailResponse getUserById(Long userId) {
+        User user = userRepository.findById(userId)
                 .orElseThrow(() -> new RuntimeException("NOT_FOUND_USER"));
+        return AdminUserResponseDTO.AdminUserDetailResponse.from(user);
     }
 
     @Transactional
-    public User updateUser(Long userId, AdminUpdateUserRequest request) {
+    public AdminUserResponseDTO.AdminUserDetailResponse updateUser(Long userId, AdminUpdateUserRequest request) {
         User user = userRepository.findById(userId)
                 .orElseThrow(() -> new RuntimeException("NOT_FOUND_USER"));
 
@@ -73,6 +77,6 @@ public class AdminUserService {
             user.restore();
         }
 
-        return user;
+        return AdminUserResponseDTO.AdminUserDetailResponse.from(user);
     }
 }

@@ -85,6 +85,7 @@ public class EquipmentService {
         Equipment equipment = Equipment.builder()
                 .name(request.getName())
                 .type(request.getType())
+                .availableQuantity(request.getTotalQuantity())
                 .totalQuantity(request.getTotalQuantity())
                 .organization(member.getOrganization())
                 .creator(member)

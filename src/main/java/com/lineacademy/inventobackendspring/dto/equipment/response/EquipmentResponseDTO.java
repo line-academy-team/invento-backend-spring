@@ -34,7 +34,8 @@ public class EquipmentResponseDTO {
                     .imageUrl(equipment.getImageUrl())
                     .type(equipment.getType())
                     .totalQuantity(equipment.getTotalQuantity())
-                    .availableQuantity(equipment.getTotalQuantity())
+                    // 수정: getAvailableQuantity()로 변경
+                    .availableQuantity(equipment.getAvailableQuantity())
                     .status(equipment.getStatus())
                     .department(DepartmentSummary.from(equipment.getDepartment()))
                     .createdAt(equipment.getCreatedAt())
@@ -68,11 +69,13 @@ public class EquipmentResponseDTO {
                     .imageUrl(equipment.getImageUrl())
                     .type(equipment.getType())
                     .totalQuantity(equipment.getTotalQuantity())
+                    // 추가: availableQuantity 매핑 추가
+                    .availableQuantity(equipment.getAvailableQuantity())
                     .status(equipment.getStatus())
                     .department(DepartmentSummary.from(equipment.getDepartment()))
-                    .units(equipment.getUnits().stream()
+                    .units(equipment.getUnits() != null ? equipment.getUnits().stream()
                             .map(EquipmentUnitDto::from)
-                            .collect(Collectors.toList()))
+                            .collect(Collectors.toList()) : List.of())
                     .createdAt(equipment.getCreatedAt())
                     .updatedAt(equipment.getUpdatedAt())
                     .build();
