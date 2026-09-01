@@ -18,4 +18,8 @@ public interface RentalRepository extends JpaRepository<Rental, Long> {
     Optional<Rental> findByIdAndEquipmentOrganizationId(Long id, Long organizationId);
 
     boolean existsByMemberIdAndEquipmentIdAndStatus(Long memberId, Long equipmentId, RentalStatus status);
+
+    Long countByMemberOrganizationIdAndStatus(Long organizationId, RentalStatus status);
+
+    List<Rental> findTop10ByMemberOrganizationIdOrderByRequestedAtDesc(Long organizationId);
 }

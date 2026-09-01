@@ -19,4 +19,7 @@ public interface EquipmentRepository extends JpaRepository<Equipment, Long> {
             @Param("category") String category,
             @Param("search") String search
     );
+
+    @Query("SELECT COALESCE(SUM(e.totalQuantity), 0) FROM Equipment e WHERE e.organization.id = :organizationId")
+    Integer sumTotalQuantityByOrganizationId(@Param("organizationId") Long organizationId);
 }

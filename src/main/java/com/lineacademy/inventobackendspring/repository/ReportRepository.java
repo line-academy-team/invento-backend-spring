@@ -19,4 +19,6 @@ public interface ReportRepository extends JpaRepository<Report, Long> {
     Optional<Report> findByIdAndReporterId(Long id, Long reporterId);
 
     Optional<Report> findByIdAndReporterOrganizationId(Long id, Long organizationId);
+
+    Long countByReporterOrganizationIdAndTypeAndStatus(Long organizationId, ReportType type, ReportStatus status);
 }
